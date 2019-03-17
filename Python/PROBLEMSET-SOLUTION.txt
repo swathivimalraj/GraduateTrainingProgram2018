@@ -1,0 +1,410 @@
+------------------------------------------------------------------PROBLEM SET 01------------------------------------------------------------------------------------------
+#1.Write a program that examines three variables—x, y, and z— and prints the largest odd number among them. If none of them are odd, it should print a message to that effect.
+b=[]
+x=int(input("Enter X value"))
+y=int(input("Enter Y value"))
+z=int(input("Enter z value"))
+if(x%2!=0):
+    b.append(x)
+if(y%2!=0):
+    b.append(y)
+if(z%2!=0):
+    b.append(z)
+if not b:
+    print("There is no odd")
+else:
+    print(max(b))
+#2.Python provides a built-in function called len that returns the length of a string, so the value of len('Cigna') is 5. Write a function named right_justify that takes a string named s as a parameter and prints the string with enough leading spaces so that the last letter of the string is in column 70 of the display.
+>>> right_justify('Cigna')
+def right_justify(s):
+    		print("%70s" %s)
+right_justify('Cigna')	
+#3.Write a program that asks the user to input 10 integers, and then prints the largest odd number that was entered. If no odd number was entered, it should print a message to that effect.
+b=[]
+odd=[]
+for i in range(10):
+    a=int(input("Enter a value"))
+    b.append(a)
+for i in range(10):
+    if(b[i]%2!=0):
+        odd.append(b[i])
+# if(y%2!=0):
+#     b.append(y)
+# if(z%2!=0):
+#     b.append(z)
+if not b:
+    print("There is no odd")
+else:
+    print("The Largest Odd No is:%d"%max(odd))
+print(b)
+print(odd)
+#4.Practice using the Python interpreter as a calculator:
+a) The volume of a sphere with radius r is 4/3pr3. What is the volume of a sphere with radius 5?
+Hint: 392.7 is wrong!
+b) Suppose the cover price of a book is Rs.24.95, but bookstores get a 40% discount. Shipping costs
+Rs.3 for the first copy and 0.75p for each additional copy. What is the total wholesale cost for
+60 copies?
+print("Volume:")
+import math
+radius=int(input("Enter the radius"))
+volume=(4.0/3.0)*(math.pi)*(radius**3)
+print(volume)
+print("Magazeeen")
+MRP=24.95
+Discount=MRP*.40
+Shipping=.75
+No_of_copies=59
+first_copy=Discount+3
+rest_of_the_copy=Discount+.75
+rest_of_the_copy1=rest_of_the_copy*No_of_copies
+total=rest_of_the_copy1+first_copy
+print(total)
+#5.Write a program that asks the user to enter an integer and prints two integers, root and pwr, such that 0 < pwr < 6 and root**pwr is equal to the integer entered by the user. If no such pair of integers exists, it should print a message to that effect.
+num=int(input("enter a number:"))
+for i in range(1,6):
+    root=num**(1/float(i))
+    if(int(root)**i==num):
+        pwr=i
+        print("root is:",root)
+        print("pwr is:",pwr)
+#6.Let s be a string that contains a sequence of decimal numbers separated by commas, e.g., s = '1.23,2.4,3.123'. Write a program that prints the sum of the numbers in s.
+s = '1.23,2.4,3.123'
+split1 = s.split(",")
+split2 = []
+sum=0
+for i in split1:
+    split2.append(float(i))
+for i in split2:
+     sum = sum + i
+print(sum)
+#7.Write a function isIn() that accepts two strings as arguments and returns True if either string occurs anywhere in the other, and False otherwise. Hint: you might want to use the built-in str operation in.
+a=raw_input("Enter a string")
+b=raw_input("enter another string")
+def isIn(var1,var2):
+    if var1 in var2 or var2 in var1:
+        print("Match Found")
+    else:
+        print("Match not Found")
+isIn(a,b)
+#8.Implement a function that satisfies the specification. Use a try-except block.
+
+def getRatios(vect1, vect2):
+	"""Assumes: vect1 and vect2 are lists of equal length of numbers
+	Returns: a list containing the meaningful values of
+	vect1[i]/vect2[i]""
+vect3=[]
+def getRatios(vect1, vect2):
+    for i in range(0,(len(vect1))):
+                vect3.append(vect1[i]/vect2[i])
+    return vect3
+try:
+    print(getRatios([2,4,5],[2,2,5]))
+except:
+    print("Error")
+#10.Observe the Code Snippet
+What would the code above return if the statement x = 25 were replaced by x = -25?
+x = -25
+epsilon = 0.01
+numGuesses = 0
+low = 0.0
+high = max(1.0, x)
+ans = (high + low)/2.0
+while abs(ans**2 - x) >= epsilon:
+    print 'low =', low, 'high =', high, 'ans =', ans
+    numGuesses += 1
+    if ans**2 < x:
+        low = ans
+    else:
+        high = ans
+    ans = (high + low)/2.0
+print 'numGuesses =', numGuesses
+print ans, 'is close to square root of', x
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------PROBLEM SET 02---------------------------------------------------------------------------------------------------
+'''1.The greatest common divisor (GCD) of a and b is the largest number that divides both of them with no remainder.
+One way to find the GCD of two numbers is based on the observation that if r is the remainder when a is divided
+by b, then gcd(a, b) = gcd(b, r). As a base case, we can use gcd(a, 0) = a. Write a function called gcd that takes
+parameters a and b and returns their greatest common divisor.'''
+def gcd(a,b):
+    if(b==0):
+        return a
+    else:
+        return gcd(b,a%b)
+a=int(input("Enter first number:"))
+b=int(input("Enter second number:"))
+GCD=gcd(a,b)
+print("GCD is: ")
+print(GCD)
+'''02.A number, a, is a power of b if it is divisible by b and a/b is a power of b.
+Write a function called is_power that takes parameters a and b and returns True
+if a is a power of b. Note: you will have to think about the base case.'''
+def is_power(a,b):
+    c=a/b
+    if((a%b==0) and (c%b==0)):
+        return True
+    else:
+        return False
+    
+a=int(input("enter first num:"))
+b=int(input("enter second num:"))
+res=is_power(a,b)
+if(res==True):
+    print("{} is a power of {}".format(a,b))
+else:
+    print("{} is not a power of {}".format(a,b)) 
+'''3.Observe the following function definitions. They Calculate the Factorial
+as per the Mathematical definition1! = 1 (n + 1)! = (n + 1) * n! Implement factI(n)
+as an Iterative Implementation & factR(n) as a Recursive Implementation'''
+#method 1:
+def factI(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factI(n-1)
+print(factI(5))
+#method 2:
+n=int(input("Enter number:"))
+def factR(n):
+    fact=1
+    while(n>0):
+        fact=fact*n
+        n=n-1
+    print("Factorial of the number is: ")
+    return fact
+print(factR(n))
+#4.Write a program that computes the decimal equivalent of the binary number 10011?
+#1st method
+def decimal():
+    number="1010"
+    num=0
+    r=0
+    number1=int(number)
+    for i in range(len(number)):     
+            r=number1%10
+            num+=(2**i)*r
+            number1=number1/10
+    return num
+print(decimal())
+#2nd method
+import math
+number="1010"
+num=0
+p=0
+for i in range(len(number)-1,-1,-1):
+    num=num+int(number[i])*math.pow(2,p)
+    p+=1
+print(num)
+#5. SUMOFDIGITS
+#method 1
+def sumDigits(s):
+    #s='f45d5'
+    sum1=0
+    for i in s:
+        if i.isdigit()==True:
+            sum1+=int(i)
+    return sum1
+print(sumDigits('a2b3c'))
+"""06.def findAnEven(l):
+	Assumes l is a list of integers
+	Returns the first even number in l
+	Raises ValueError if l does not contain an even number"""
+Evenlis1=[]
+def findAnEven(l):
+    for i in l:
+    #for i in range(0,len(l- 1)):
+        if(i%2==0):
+            Evenlis1.append(i)
+    #if lis1!=0:
+    #   print(lis1[0])
+    #else:
+    if not Evenlis1:
+        raise ValueError("List does does not contain even number")
+    return Evenlis1[0]
+print(findAnEven([3,7,9]))
+'''07.A palindrome is a word that is spelled the same backward and forward, like "Malayalam" and "Noon" . Recursively, a word is a palindrome if the first and last letters are the same and the middle is a palindrome. Write a function called is_palindrome that takes a string argument and returns True if it is a palindrome and False otherwise. Remember that you can use the built-in function len to check the length of a string.
+Use the function definition
+def isPalindrome(s):
+	"""Assumes s is a str
+	Returns True if s is a palindrome; False otherwise.
+	Punctuation marks, blanks, and capitalization are
+	ignored."""'''
+import string
+def isPalindrome(s):
+    s1=s.lower()
+    ss=s1.translate(None, string.punctuation)
+    rev = ss[::-1]
+    if (ss == rev): 
+        return True
+    return False
+print(isPalindrome('SwA,a$Ws'))
+#08.The built-in function eval takes a string and evaluates it using the Python interpreter. For example:
+#>>> eval('1 + 2 * 3')
+listt=[]
+def evalFunc(l):
+    fun=eval(l)
+    listt.append(fun)
+while True:
+    inp=raw_input("Say something:")
+    if(inp == 'done'):
+        print listt.pop()
+        break
+    else:
+        evalFunc(inp)
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------PROBLEM SET 03-----------------------------------------------------------------------
+'''1.A string slice can take a third index that specifies the "step size;" that is,
+the number of spaces between successive characters.
+A step size of 2 means every other character; 3 means every third, etc.
+A step size of -1 goes through the word backwards, so the slice [::-1] generates a reversed string.
+Use this idiom to write a one-line version of is_palindrome'''
+inp=raw_input("Enter a String")
+def isPalindrome(s): 
+    if s[::-1]== s: 
+        print("Yes")
+    else:
+        print("No")
+isPalindrome(inp)
+'''02.Write a function called rotate_word() that takes a string and an integer
+as parameters, and that returns a new string that contains the letters from
+the original string "rotated" by the given amount. For example, "cheer" rotated
+by 7 is "jolly" and "melon" rotated by -10 is "cubed". You might want to use
+the built-in functions ord, which converts a character to a numeric code,
+and chr, which converts numeric codes to characters.'''
+word =raw_input("Enter a string: ")
+number = int(input("Enter number: "))
+def Rotate_word(word, number ):
+    converted_word = ''
+    for i in word:
+        #print i
+        #print chr(ord(i) +number)
+        i = chr(ord(i) + number)
+        converted_word = converted_word + i
+    return (converted_word)
+print (Rotate_word(word,number))
+'''03.In 1939 Ernest Vincent Wright published a 50,000 word novel called Gadsby that does not contain the letter "e."
+Since "e" is the most common letter in English, that’s not easy to do. In fact, it is difficult to construct a
+solitary thought without using that most common symbol. It is slow going at first, but with caution and hours of
+training you can gradually gain facility. All right, I’ll stop now. Write a function called has_no_e that returns True
+if the given word doesn’t have the letter "e" in it.'''
+s=raw_input("Enter a String")
+def has_no_e(li):
+        if(("e" in s)== True):
+            return False
+        else:
+            return True
+print(has_no_e(s))
+'''4. Modify the above program to print only the words that have no “e”
+and compute the percentage of the words in the list have no “e.”'''
+input_list=[]
+contains_E=[]
+def no_e(input_list):
+    for i in input_list:
+        if(('e' not in i)==True):
+            contains_E.append(i)
+            length1=len(input_list)
+            length2=len(contains_E)
+    print("These are the words that does not contain character 'e' in it{}".format(contains_E))
+    percentage=(float(length2)/float(length1))*100
+    print("{}%".format(int(percentage)))
+inp=raw_input("enter string:")
+input_list=inp.split(" ")
+no_e(input_list)
+'''5.Write a function named avoids that takes a word and a string of forbidden
+letters, and that returns True if the word doesn’t use any of the forbidden letters.'''
+inp = raw_input("Enter the string of forbidden letters")
+process = raw_input("Enter a word ")
+def avoids():
+    for i in inp:
+     if i in process:
+         return False
+         break
+     else:
+         return True
+print(avoids())
+'''6. Modify your program to prompt the user to enter a string of forbidden letters and then print the number of words that don’t contain any of them.
+Can you find a combination of 5 forbidden letters that excludes the smallest number of words?'''
+f_word = raw_input("Enter the string of forbidden letters")
+sentence = raw_input("Enter a word ")
+words=sentence.split(' ')
+
+list_1=[]
+def avoid():
+    for word in words:
+        count =0
+        for i in f_word:
+            if word.__contains__(i):
+                continue
+            else:
+                count+=1
+                if count==len(f_word):
+                    list_1.append(word)
+
+    print len(list_1)
+avoid()
+#7.
+s=raw_input("enter string:")
+w=raw_input("Enter a word:")
+string=s.lower()
+wor=w.lower()
+word=wor.replace(" ", "")
+a=[]
+def using_only(string,word):
+    lis=list(string)
+    word_lis=list(word)
+    for i in word:
+        if i in lis:
+            a.append(i)
+    #print a == word_lis
+    if a == word_lis:
+        print True
+    else:
+        print False  
+print(using_only(string,word))
+#8.
+wor = raw_input("Enter a word ")
+word=wor.lower()
+def is_abecedarian(word):
+    for i in range(len(word) - 1):
+        if word[i] > word[i + 1]:
+            return False
+    return True
+print(is_abecedarian(word))
+#9.
+f_word = raw_input("Enter the string of forbidden letters")
+sentence = raw_input("Enter a word ")
+words=sentence.split(' ')
+
+list_1=[]
+def avoid():
+    for word in words:
+        count =0
+        for i in f_word:
+            if word.__contains__(i):
+                continue
+            else:
+                count+=1
+                if count==len(f_word):
+                    list_1.append(word)
+
+    print len(list_1)
+avoid()
+'''10.Two words are anagrams if you can rearrange the letters from one to spell the other.
+Write a function called is_anagram that takes two strings and returns True if they are anagrams.'''
+a=raw_input("Enter a string")
+b=raw_input("enter another string")
+def isIn(str1,str2):
+    li1=list(str1)
+    li2=list(str2)
+    
+    li1.sort()
+    li2.sort()
+   
+    if(li1==li2):
+        print("%s & %s  are Anagram" %(a,b))
+    else:
+        print("%s & %s are not an Anagram"%(a,b))
+
+isIn(a,b)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------
+
