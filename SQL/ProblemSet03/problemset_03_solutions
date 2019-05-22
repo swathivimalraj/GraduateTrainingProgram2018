@@ -113,19 +113,9 @@ select m.title,max(r.stars)-min(r.stars) as 'rating spread' from rating r join m
 9.
 Find the difference between the average rating of movies released before 1980 and the average rating of movies released after 1980. (Make sure to calculate the average rating for each movie, then the average of those averages for movies before 1980 and movies after. Don't just calculate the overall average rating before and after 1980.) (1 point possible)
 
-  select 
-   (select avg(a.av1) from 
-      (select ra.mID,m.year,avg(ra.stars) as av1 from rating ra join movie m on ra.mID = m.mID group by ra.mID )as a where a.year<1980)
-   - 
-   (select avg(b.av2) from 
-      (select ra.mID,m.year,avg(ra.stars) as av2 from rating ra join movie m on ra.mID = m.mID group by ra.mID) as b where b.year>1980);
-
+  select (select avg(a.avg1) from (select avg(r.stars)as avg1 from rating r join movie m on m.mid = r.mid where m.year<1980 group by (m.year))as a) - (select avg(b.avg1) from (select avg(r.stars)as avg1 from rating r join movie m on m.mid = r.mid where m.year>1980 group by (m.year))as b);
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| (select avg(a.av1) from
-      (select ra.mID,m.year,avg(ra.stars) as av1 from rating ra join movie m on ra.mID = m.mID group by ra.mID )as a where a.year<1980)
-   -
-   (select avg(b.av2) from
-      (select ra.mID,m.year,avg(ra.stars) as av2 from rating |
+| (select avg(a.avg1) from (select avg(r.stars)as avg1 from rating r join movie m on m.mid = r.mid where m.year<1980 group by (m.year))as a) - (select avg(b.avg1) from (select avg(r.stars)as avg1 from rating r join movie m on m.mid = r.mid where m.year>1980 |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                                                                                                                                                                                                      0.05556667 |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
